@@ -68,6 +68,7 @@ You can test all API endpoints using the Postman collection in the same file str
 
 ## Project Structure
 
+```
 Smart_Notification/
 ├── notifications/        # Main app for notifications
 │   ├── models.py         # Notification and preferences models
@@ -83,3 +84,4 @@ Smart_Notification/
 ├── Design_Decision.md
 ├── db.sqlite3
 ├── ....
+```
