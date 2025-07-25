@@ -13,8 +13,8 @@ This is a Django-based Smart Notification System built with Django 4.x and Djang
 ### Installation
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repo/smart-notification-system.git
-   cd smart-notification-system
+   git clone git@github.com:Sachit56/SmartNotification.git
+   cd SmartNotification
    ```
 
 2. **Database**:
