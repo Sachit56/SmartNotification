@@ -1,0 +1,649 @@
+{
+	"info": {
+		"_postman_id": "d80e644d-ae1a-4f8c-82a0-cfcb045d6014",
+		"name": "Smart Notification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21753373",
+		"_collection_link": "https://martian-resonance-52158.postman.co/workspace/tvis~96a9d86c-05d6-4e85-abaf-2b9cd836ed89/collection/21753373-d80e644d-ae1a-4f8c-82a0-cfcb045d6014?action=share&source=collection_link&creator=21753373"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test1\",\n    \"email\":\"test1@gmail.com\",\n    \"password\":\"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"register",
+						""
+					]
+				},
+				"description": "## Register Notifications Endpoint\n\nThis endpoint allows users to register in the system by providing their username, email, and password. Upon successful registration, the server responds with a confirmation message.\n\n### Request\n\n**Method:** POST  \n**URL:** `http://127.0.0.1:8000/api/v1/notifications/register/`\n\n**Request Body:**  \nThe request must include the following parameters in JSON format:\n\n- `username` (string): The desired username for the account.\n    \n- `email` (string): The email address associated with the account.\n    \n- `password` (string): The password for the account.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"username\": \"test1\",\n  \"email\": \"test1@gmail.com\",\n  \"password\": \"admin\"\n}\n\n ```\n\n### Response\n\n**Status Code:** 201 Created  \n**Content-Type:** application/json\n\n**Response Body:**  \nOn successful registration, the response will contain a message confirming the registration.\n\n- `message` (string): A confirmation message indicating the registration status.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"message\": \"user created successfully\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test1\",\n    \"password\":\"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"login",
+						""
+					]
+				},
+				"description": "## Login Notification Endpoint\n\nThis endpoint allows users to log in by providing their credentials. Upon successful authentication, it returns an access token that can be used for subsequent requests.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/login/`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and include the following parameters:\n\n- `username` (string): The username of the user attempting to log in.\n    \n- `password` (string): The password associated with the provided username.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"username\": \"test1\",\n  \"password\": \"admin\"\n}\n\n ```\n\n### Response\n\n- **Status Code**: 200\n    \n- **Content-Type**: application/json\n    \n\n#### Response Body\n\nOn a successful login, the response will contain:\n\n- `access` (string): An access token that grants permission for further API interactions.\n    \n\n**Example Response**:\n\n``` json\n{\n  \"access\": \"<token>\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Threads",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/threads/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"threads",
+						""
+					]
+				},
+				"description": "## Endpoint: Retrieve Threads\n\nThis endpoint allows clients to retrieve a list of threads.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/threads/`\n    \n\n### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n\n#### Response Structure\n\nThe response will contain a JSON object with the following structure:\n\n``` json\n{\n  \"threads\": [\n    {\n      \"title\": \"string\"\n    }\n  ]\n}\n\n ```\n\n- **threads**: An array of notification thread objects.\n    \n    - **title**: A string representing the title of the thread.\n        \n\n### Example Response\n\n``` json\n{\n  \"threads\": [\n    {\n      \"title\": \"Sample Thread Title\"\n    }\n  ]\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Threads",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"New Post1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/threads/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"threads",
+						""
+					]
+				},
+				"description": "## Create New Thread\n\nThis endpoint allows users to create a new thread. Upon successful creation, the server responds with the details of the newly created thread.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/threads/`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and should contain the following key:\n\n- `title` (string): The title of the thread being created.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"title\": \"Post Five\"\n}\n\n ```\n\n### Response\n\nOn successful creation of a notification thread, the server responds with a `201 Created` status code and the following JSON structure:\n\n- `message` (string): An optional message regarding the request.\n    \n- `threads` (object): An object containing the details of the created thread.\n    \n    - `title` (string): The title of the created thread.\n        \n\n**Example Successful Response:**\n\n``` json\n{\n  \"message\": \"new thread created successfully.\",\n  \"threads\": {\n    \"title\": \"Post Five\"\n  }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Thread Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"threads\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/thread-subscription/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"thread-subscription",
+						""
+					]
+				},
+				"description": "## Subscribe to the Thread\n\nThis endpoint allows users to subscribe to a specific thread by sending a POST request to the `/api/v1/notifications/thread-subscription/` URL. The request requires a payload that specifies the thread to be subscribed to.\n\n### Request\n\n- **Method:** POST\n    \n- **URL:** `http://127.0.0.1:8000/api/v1/notifications/thread-subscription/`\n    \n- **Request Body:**\n    \n    - `threads` (integer): The ID of the thread to which the user wishes to subscribe.\n        \n\n### Example Request\n\n``` json\n{\n  \"threads\": 1\n}\n\n ```\n\n### Response\n\nUpon a successful subscription, the API will respond with a status code of **201 Created**. The response body will contain a JSON object with the following structure:\n\n- **Response Body:**\n    \n    - `message` (string): A message indicating the result of the subscription action.\n        \n\n### Example Response\n\n``` json\n{\n  \"message\": \"Subcribed successfully\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Notification Preference",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/preferences/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"preferences",
+						""
+					]
+				},
+				"description": "## Get Notification Preferences\n\nThis endpoint retrieves the notification preferences for the authenticated user. It allows users to check their current settings regarding notifications.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/preferences/`\n    \n\n### Response\n\nOn a successful request, the server responds with a status code of **200** and a JSON object containing the user's notification preferences.\n\n#### Response Structure\n\n``` json\n{\n  \"preference\": {\n    \"preference\": \"app\"\n  }\n}\n\n ```\n\n- `preference`: This key holds the user's notification preference as a string. The exact value will depend on the user's settings."
+			},
+			"response": []
+		},
+		{
+			"name": "Notification Preference",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"preference\":\"sms\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/preferences/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"preferences",
+						""
+					]
+				},
+				"description": "## API Endpoint: Set Notification Preferences\n\nThis endpoint allows users to set their notification preferences. By sending a POST request to this endpoint, users can specify how they wish to receive notifications (e.g., via SMS).\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/preferences/`\n    \n- **Content-Type**: application/json\n    \n\n#### Request Body\n\nThe request body must be a JSON object containing the following key:\n\n- **preference** (string): This key indicates the user's preferred method of receiving notifications. For example, setting this to `\"sms\"` will configure the notifications to be sent via SMS.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"preference\": \"sms\"\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a status code indicating the result of the operation.\n\n- **Status Code**: 201 (Created) or 200 (OK)\n    \n- **Content-Type**: application/json\n    \n\n#### Response Body\n\nThe response will be a JSON object with the following structure:\n\n- **message** (string): This field contains a message indicating the result of the operation.\n    \n\n**Example Response Body:**\n\n``` json\n{\n  \"message\": \"Preference Added successfully\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Notification Preference",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"preference\":\"app\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/preferences/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"preferences",
+						""
+					]
+				},
+				"description": "### Update Notification Preferences\n\nThis endpoint allows users to update their notification preferences. By sending a PUT request to the specified URL, users can modify their preferences related to notifications.\n\n#### Request Format\n\n- **Method**: PUT\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/preferences/`\n    \n- **Request Body**: The request body should be in JSON format, containing the following key:\n    \n    - `preference` (string): The new preference value for notifications (e.g., \"app\").\n        \n\n**Example Request Body**:\n\n``` json\n{\n  \"preference\": \"app\"\n}\n\n ```\n\n#### Response Structure\n\nUpon a successful request, the server responds with a status code of 200 and a JSON object. The response structure is as follows:\n\n- **Status Code**: 200\n    \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - `message` (string): A message indicating the result of the operation.\n        \n    - `preference` (object): An object containing the updated preference.\n        \n        - `preference` (string): The updated preference value.\n            \n\n**Example Response**:\n\n``` json\n{\n  \"message\": \"Preference Updated successfully\",\n  \"preference\": {\n    \"preference\": \"app\"\n  }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Unread Notification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/unread/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"unread",
+						""
+					]
+				},
+				"description": "## Endpoint Description\n\nThis endpoint retrieves a list of unread notifications for the user. It is designed to provide users with information about notifications that have not yet been acknowledged.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/unread/`\n    \n\n### Response\n\nUpon a successful request, the server responds with a `200 OK` status and a JSON object containing the unread notifications. The structure of the response is as follows:\n\n``` json\n{\n  \"unread_notification\": [\n    {\n      \"message\": \"User (test) commented on a thread(Post One).\",   // The content of the notification message\n      \"event\": \"comment\",     // The event associated with the notification\n      \"status\": true,  // Indicates the status of the notification\n      \"is_read\": false  // Indicates whether the notification has been read\n    }\n  ]\n}\n\n ```\n\n### Response Fields\n\n- **unread_notification**: An array of unread notification objects.\n    \n    - **message**: A string that contains the notification message.\n        \n    - **event**: A string that describes the event related to the notification.\n        \n    - **status**: A boolean indicating the current status of the notification.\n        \n    - **is_read**: A boolean that indicates whether the notification has been read.\n        \n\nThis endpoint is crucial for users to manage their notifications effectively, ensuring they stay informed about important events and messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Read Notification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"is_read\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/read/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"read",
+						""
+					]
+				},
+				"description": "## Mark Notification as Read\n\nThis endpoint allows the user to mark a notification as read. It is a POST request that updates the notification is_read status in the system.\n\n### Request\n\n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/read/`\n    \n- **Method**: POST\n    \n- **Content-Type**: application/json\n    \n\n#### Request Body\n\nThe request body must be in JSON format and should contain the following parameter:\n\n- `is_read` (boolean): Indicates whether the notification has been marked as read. Set this to `true` to mark the notification as read.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"is_read\": true\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a 200 status code and a JSON object containing the following structure:\n\n- `message` (string): A message indicating the result of the operation.\n    \n\n**Example Response**:\n\n``` json\n{\n  \"message\": \"Read all the notification.\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Notification History",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/history/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"history",
+						""
+					]
+				},
+				"description": "## API Endpoint: Get Notification History\n\n### Purpose\n\nThis endpoint retrieves the history of notifications for the authenticated user. It provides a structured response containing details about each notification, including its message, event type, status, and read status.\n\n### Request\n\n- **Method:** GET\n    \n- **URL:** `http://127.0.0.1:8000/api/v1/notifications/history/`\n    \n\n### Response\n\n- **Status Code:** 200\n    \n- **Content-Type:** application/json\n    \n\n#### Response Structure\n\nThe response will return a JSON object with the following structure:\n\n``` json\n{\n  \"notification_history\": [\n    {\n      \"message\": \"User(test) requested to generate weekly report of thread(Post One\",\n      \"event\": \"report\",\n      \"status\": true,\n      \"is_read\": false\n    }\n  ]\n}\n\n ```\n\n- **notification_history**: An array of notification objects.\n    \n    - **message**: A string containing the notification message.\n        \n    - **event**: A string representing the type of event that triggered the notification.\n        \n    - **status**: A boolean indicating whether the notification is delivered.\n        \n    - **is_read**: A boolean indicating whether the notification has been read by the user.\n        \n\n### Example Response\n\n``` json\n{\n  \"notification_history\": [\n    {\n      \"message\": \"A new user (test1) subscribed the thread (Post One).\",\n      \"event\": \"subscribe\",\n      \"status\": true,\n      \"is_read\": true\n    }\n  ]\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/comments/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"comments",
+						"1",
+						""
+					]
+				},
+				"description": "## Get Comments for a Notification\n\nThis endpoint retrieves comments associated with a specific thread identified by its ID.\n\n### Request\n\n- **Method**: `GET`\n    \n- **Endpoint**: `http://127.0.0.1:8000/api/v1/notifications/comments/{thread_id}/`\n    \n\n### Response\n\n- **Status Code**: `200 OK`\n    \n- **Content-Type**: `application/json`\n    \n\n#### Response Body\n\nThe response will contain a JSON object with the following structure:\n\n``` json\n{\n  \"comments\": [\n    {\n      \"thread\": 1,  // Identifier for the commented thread\n      \"text\":\"nice post,      // Content of the comment\n      \"user\":2      // Identifier for the user who made the comment\n    }\n  ]\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\":\"very nice post\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/comments/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"comments",
+						"1",
+						""
+					]
+				},
+				"description": "## Add Comment to Notification Thread\n\nThis endpoint allows users to add a comment to a specific notification thread identified by its ID.\n\n### Request\n\n- **Method:** POST\n    \n- **URL:** `http://127.0.0.1:8000/api/v1/notifications/comments/{thread_id}/`\n    \n- **Content-Type:** application/json\n    \n\n#### Request Body Parameters\n\n- **text** (string): The content of the comment being added to the thread.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"text\": \"very nice post\"\n}\n\n ```\n\n### Response\n\n- **Status Code:** 201 Created\n    \n- **Content-Type:** application/json\n    \n\n#### Response Body Structure\n\n- **message** (string): A message indicating the result of the operation.\n    \n- **data** (object): Contains the details of the created comment.\n    \n    - **thread** (integer): The ID of the thread the comment belongs to.\n        \n    - **text** (string): The content of the comment.\n        \n    - **user** (integer): The ID of the user who made the comment.\n        \n\n**Example Response:**\n\n``` json\n{\n  \"message\": \"Comment posted successfully.\",\n  \"data\": {\n    \"thread\": 1,\n    \"text\": \"very nice post\",\n    \"user\": 2\n  }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Weekly Report",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/report/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"report",
+						"1",
+						""
+					]
+				},
+				"description": "# Notifications Report API Endpoint\n\nThis endpoint retrieves the report for a specific notification identified by its unique ID. The request is made using the HTTP GET method, and it returns a summary of the thread, including details about comments and subscriptions associated with it.\n\n## Request\n\n- **Method:** GET\n    \n- **URL:** `http://127.0.0.1:8000/api/v1/notifications/report/{thread_id}/`\n    \n- **Path Parameter:**\n    \n    - `thread_id` (integer): The unique identifier of the thread for which the report is requested.\n        \n\n## Response\n\nUpon a successful request, the server responds with a status code of **200** and a JSON object containing the following structure:\n\n``` json\n{\n  \"data\": {\n    \"thread\": \"Post One\",           // The associated thread title.\n    \"total_comments\": 4,          // Total number of comments related to the thread.\n    \"total_subscriptions\": 4       // Total number of subscriptions related to the thread.\n  }\n}\n\n ```\n\n### Response Fields:\n\n- `data`: An object containing the report details.\n    \n    - `thread`: The associated thread title.\n        \n    - `total_comments`: An integer indicating the total number of comments related to the thread.\n        \n    - `total_subscriptions`: An integer indicating the total number of subscriptions related to the thread."
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Notification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\":\"Cool\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/notifications/trigger/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"notifications",
+						"trigger",
+						"1",
+						""
+					]
+				},
+				"description": "## Trigger Notification Endpoint\n\nThis endpoint allows you to trigger a notification by sending a POST request. It is designed to create a new notification entry in the system.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/v1/notifications/trigger/1/`\n    \n\n#### Request Body\n\nThe request body should be in JSON format and must include the following parameter:\n\n- **text** (string): The content of the comment message you want to send.\n    \n\n**Example:**\n\n``` json\n{\n  \"text\": \"Cool\"\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a `201 Created` status code and a JSON object containing the following structure:\n\n- **message** (string): A message indicating the result of the operation.\n    \n- **data** (object): An object containing the details of the created notification:\n    \n    - **thread** (integer): The identifier for the thread.\n        \n    - **text** (string): The content of the comment.\n        \n    - **user** (integer): The identifier for the user associated with the notification.\n        \n\n**Example Response:**\n\n``` json\n{\n  \"message\": \"Comment posted successfully.\",\n  \"data\": {\n    \"thread\": 1,\n    \"text\": \"Cool\",\n    \"user\": 2\n  }\n}\n\n ```"
+			},
+			"response": []
+		}
+	]
+}

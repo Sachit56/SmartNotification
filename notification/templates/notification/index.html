@@ -1,0 +1,22 @@
+{% if request.user.is_authenticated %}
+  <div id="notifications"></div>
+  <h3>{{request.user}}</h3>
+
+  <script>
+      const socket = new WebSocket("ws://" + window.location.host + "/ws/notifications/");
+
+      socket.onmessage = function(event) {
+          const data = JSON.parse(event.data);
+          console.log("Received:", data.message);
+      };
+
+      socket.onopen = function() {
+          console.log("WebSocket connected to ws://" + window.location.host + "/ws/notifications/");
+      };
+
+      socket.onclose = function() {
+          console.log("WebSocket closed");
+      };
+
+  </script>
+{% endif %}
