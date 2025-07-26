@@ -41,7 +41,7 @@ This is a Django-based Smart Notification System built with Django and Django RE
 
 ## API Endpoints
 
-The API provides endpoints for user,thread,comment and notification management, as detailed in the `Smart Notification.postman_collection.json` Postman collection. Below is a summary of the available endpoints:
+The API provides endpoints for user,thread,comment and notification management, for more detailed one we can access use `Smart Notification.postman_collection.json` Postman collection in the repository itself. Below is a summary of the available endpoints:
 
   
 
@@ -156,7 +156,7 @@ The API provides endpoints for user,thread,comment and notification management, 
 -  **Response**: Returns all the thread IDs and total comments in the thread and total subscriptions in the given thread.
 
  ### Trigger Notification
- 12.  **Trigger Notification**
+ 14.  **Trigger Notification**
 -  **Method**: POST
 -  **URL**: `api/v1/notifications/trigger/{{thread_id}}/`
 -  **Description**: Posts the comment in the thread if the user is subscribed; else, gets the appropriate message and a notification is also sent to subscribed users as per their preference.
@@ -174,7 +174,7 @@ The API provides endpoints for user,thread,comment and notification management, 
 
 ### WebSocket for Real-Time Notifications
 - Connect to `http://127.0.0.1:8000/api/v1/notifications/thread-socket/` after logging into the django admin.
-- Then,create new user using all the endpoints notifications will be triggered using websocket if the user's preference is `app`.
+- Then,create new user and use access token after which is provided after successful login to access all the endpoints. Notifications will be triggered on events(comments,subscriptions,login,report generation) and sent to the related or subscribed users using websocket if the user's preference is `app`.
 - You can see the notification message in **console**.
 
 ## Features
@@ -189,10 +189,10 @@ The API provides endpoints for user,thread,comment and notification management, 
 - Real-time notifications using Django Channels
 - API endpoints to manage:
   - Notification history
-  - Mark as read/unread
+  - Mark as read
   - Update preferences
   - Trigger events(Comment,Subscription,Login,Report Generation)
-  - For recognizing new device when logging in, I have used user_agent for now.If the user's user_agent while logging in is different than before then,they will get notified.
+  - For recognizing new device when logging in, I have used user agent for now.If the user's useragent while logging in is different than before then,they will get notified.
 - Delivery status tracking
 - Dockerized for easy setup and deployment
 
