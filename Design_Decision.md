@@ -56,7 +56,11 @@
 - For example, when a user comments on a thread or requests a report, the notification dispatch process is offloaded to Celery.
 - Task retries are supported using Celery’s built-in `max_retries` and `default_retry_delay`, ensuring robust delivery in case of temporary issues
 
-## 12. Security
+## 12. Rate Limiting
+- For avoiding spamming i used rate limiting all the views has limited request.
+- For the anonymous users, i have set their rate for 20 per day and users's rate is 100 per day.
+
+## 13. Security
 - User actions are validated to prevent unauthorized access (e.g., only subscribed users can comment or request reports).
 - Login records and device checks add an extra layer of security for user accounts.
 
