@@ -1,7 +1,7 @@
 # Smart Notification System
 
 ## Overview
-This is a Django-based Smart Notification System built with Django 4.x and Django REST Framework. It allows users to receive notifications triggered by events (new comment, new login, weekly summary,new subscribers) through preferred channels (in-app, mocked email, mocked SMS). The system includes RESTful APIs for managing notifications, user preferences, and event triggers, with role-based permissions and delivery status tracking. Authentication is handled via Simple JWT with register and login views, SQLite is used as the database, and WebSocket support is included for real-time in-app notifications. The application is dockerized for easy deployment.
+This is a Django-based Smart Notification System built with Django and Django REST Framework. It allows users to receive notifications triggered by events (new comment, new login, weekly summary,new subscribers) through preferred channels (in-app, mocked email, mocked SMS). The system includes RESTful APIs for managing notifications, user preferences, and event triggers, with role-based permissions and delivery status tracking. Authentication is handled via Simple JWT with register and login views, SQLite is used as the database, and WebSocket support is included for real-time in-app notifications. The application is dockerized for easy deployment.
 
 ## Setup Instructions
 ### Prerequisites
@@ -185,6 +185,7 @@ The API provides endpoints for user,thread,comment and notification management, 
   - Mocked email (console)
   - Mocked SMS (console)
 - User-configurable notification preferences
+- Django Signals are used whenever events like new subscriptions and new comments are posted.
 - Real-time notifications using Django Channels
 - API endpoints to manage:
   - Notification history
@@ -194,6 +195,9 @@ The API provides endpoints for user,thread,comment and notification management, 
   - For recognizing new device when logging in, I have used user_agent for now.If the user's user_agent while logging in is different than before then,they will get notified.
 - Delivery status tracking
 - Dockerized for easy setup and deployment
+
+## Desgin Descisions
+- Desgin Decisons can be accessed in the repository itself with the name `Design_Decision.md` 
 
 ## Project Structure
 
