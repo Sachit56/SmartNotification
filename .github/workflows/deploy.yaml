@@ -22,11 +22,14 @@ jobs:
       
       - name: Migrations
         run: |
+             source env/bin/activate
              python manage.py makemigrations
              python manage.py migrate
 
       - name: Runserver
-        run: python manage.py runserver
+        run: |
+             source env/bin/activate
+             python manage.py runserver
 
   touch: 
     name: Create File
