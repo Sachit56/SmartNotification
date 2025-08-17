@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: my-label
 
     steps:
       - name: Checkout Code
@@ -30,6 +30,7 @@ jobs:
         run: |
              source env/bin/activate
              python manage.py runserver
+
 
   touch: 
     name: Create File
