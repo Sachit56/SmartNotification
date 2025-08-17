@@ -1,0 +1,39 @@
+name: Deploy App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Activate env
+        run: python -m venv env
+             source env/bin/activate
+             pip install -r requirements.txt
+      
+      - name: Migrations
+        run: python manage.py makemigrations
+             python manage.py migrate
+
+      - name: Runserver
+        run: python manage.py runserver
+
+  touch: 
+    name: Create File
+    runs-on: my-label
+
+    steps:
+      - name : Create File
+        run: touch ~/Desktop/hello.txt
+
+      
+
+
