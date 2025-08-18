@@ -27,7 +27,7 @@ jobs:
       - name : Deploy to Production
         run: |
               python manage.py makemigrations
-              python manae.py migrate
+              python manage.py migrate
               python manage.py runserver
 
 
