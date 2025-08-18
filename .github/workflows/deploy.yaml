@@ -24,18 +24,14 @@ jobs:
              python -m pip install --upgrade pip
              pip install -r requirements.txt
 
-
-  deploy: 
-    needs: build
-    name: Deploy Application
-    runs-on: main
-
-    steps:
       - name : Deploy to Production
         run: |
               python manage.py makemigrations
               python manae.py migrate
               python manage.py runserver
+
+
+
 
       
 
